@@ -1,32 +1,23 @@
 import { useAddOrder } from "@/features/orders/hooks/useOrdersManagements";
 import { useStock } from "@/features/Stock/hooks/useStock";
-import { useOrders } from "@/features/orders/hooks/useOrders";
 import { 
   ArrowRight, 
   Package, 
   ShoppingBag, 
   RotateCcw, 
-  TrendingDown, 
-  TrendingUp,
-  Calendar,
   DollarSign,
-  Search,
-  Filter,
-  X
 } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 const Orders = () => {
   const { data: stock, isLoading: stockLoading } = useStock();
-  const { data: orders, isLoading: ordersLoading } = useOrders();
   const { mutate: addorder, isPending } = useAddOrder();
   
   const [selectedProduct, setSelectedProduct] = useState("");
   const [outQty, setOutQty] = useState("");
   const [inQty, setInQty] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filterType, setFilterType] = useState<"all" | "Income" | "Expenses">("all");
+ 
 
   const handleReturnProduct = (e: React.FormEvent) => {
     e.preventDefault();
@@ -107,7 +98,7 @@ const Orders = () => {
     });
   };
 
-  if (stockLoading || ordersLoading) {
+  if (stockLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center space-y-4">

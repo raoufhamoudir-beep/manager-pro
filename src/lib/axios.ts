@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // رابط الباك ايند الخاص بك
-const API_URL = "https://manager-pro-api.onrender.com/api";
+const API_URL = "http://localhost:5000/api";
  
 export const api = axios.create({
   baseURL: API_URL,
@@ -17,5 +17,4 @@ api.interceptors.response.use(
   (error) => {
     return Promise.reject(error);
   }
-
 );

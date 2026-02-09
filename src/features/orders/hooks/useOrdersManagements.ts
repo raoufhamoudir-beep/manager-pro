@@ -15,6 +15,8 @@ export const useAddOrder = () => {
       return res.data;
     },
     onSuccess: (data, variables) => {
+      console.log(data);
+      
       const isReturn = variables.log.type === "Income";
       toast.success(isReturn ? "تمت عملية الإرجاع بنجاح!" : "تمت عملية الإرسال بنجاح!");
       refetch();
